@@ -3,6 +3,7 @@ from turtle import left
 from f_tela_base import *
 from tela_opcaoDeCadastro import *
 from tela_cadastro_livros import *
+from tela_consultas import *
 
 
 class app:
@@ -12,10 +13,10 @@ class app:
         #Botões
         cadastar = Button(self.window,text=('Login'), font='Arial 16 bold', width=20, height=15, bg='#00c2cb', fg='black', command=lambda:tela_Op_cadastros(self))
         cadastar.place(x=-5, y= 80)
-        consultar = Button(self.window,text=('Consultar'), font='Arial 16 bold', width=20, height=15, bg='#00c2cb', fg='black')
-        consultar.place(x=274, y= 80)
-        emprestimos = Button(self.window,text=('Emprestimos'), font='Arial 16 bold', width=20, height=15, bg='#00c2cb', fg='black')
-        emprestimos.place(x=-5, y= 470)
+        self.consultar = Button(self.window,text=('Consultar'), font='Arial 16 bold', width=20, height=15, bg='#00c2cb', fg='black', command=lambda:tela_consultas(self, self.consultar))
+        self.consultar.place(x=274, y= 80)
+        self.emprestimos = Button(self.window,text=('Emprestimos'), font='Arial 16 bold', width=20, height=15, bg='#00c2cb', fg='black', command=lambda:tela_consultas(self, self.emprestimos))
+        self.emprestimos.place(x=-5, y= 470)
         livros = Button(self.window,text=('Livros'), font='Arial 16 bold', width=20, height=15, bg='#00c2cb', fg='black')
         livros.place(x=274, y= 470)
         img = PhotoImage(file='livros.png')
