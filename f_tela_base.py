@@ -15,11 +15,9 @@ def tela_padrao(self):
         self.barraMenu.place(x=10, y=10)
         texto = Label(self.window, text='SISTEMA DE CADASTRO', font='Impact 23 bold', bg='#008dd2')
         texto.place(x=120, y=10)
-
 def tela_config(self):
         tela_deFundo = PanedWindow(self.window,borderwidth=0, bg='#a9a9a9',relief='raised',bd=2, orient=VERTICAL)
         tela_deFundo.place(x=10,y=50)
-
         frame_menu = Frame(tela_deFundo, width=300, height=350)
         frame_menu.pack()
         
@@ -40,6 +38,7 @@ def tela_config(self):
 
 def voltar(self, telaVoltar):
     telaVoltar.destroy()
+    self.botao_voltar.destroy()
 
 def mudar_cor_fundo(self):
         #Mudar a cor de fundo da aplicação, acessando as propriedades do objeto window
@@ -50,5 +49,6 @@ def mudar_cor_fundo(self):
         else:
                 self.window.config(bg='#d9d9d9')
                 self.botao_voltar['bg']='#d9d9d9'
+                self.botao_cor_fundo['text'] = 'Tema escuro'
 
 
