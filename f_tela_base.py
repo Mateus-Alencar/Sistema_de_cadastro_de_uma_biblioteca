@@ -1,3 +1,4 @@
+from logging.handlers import TimedRotatingFileHandler
 from tkinter import *
 from tkinter import colorchooser
 from PIL import ImageTk, Image
@@ -17,6 +18,8 @@ def tela_padrao(self):
         self.barraMenu.place(x=10, y=10)
         texto = Label(self.window, text='SISTEMA DE CADASTRO', font='Impact 23 bold', bg='#008dd2')
         texto.place(x=120, y=10)
+        frameV = Frame(self.window).place(x=0, y=800)
+
 def tela_config(self):
         tela_deFundo = PanedWindow(self.window,borderwidth=0, bg='#a9a9a9',relief='raised',bd=2, orient=VERTICAL)
         tela_deFundo.place(x=10,y=50)
@@ -36,11 +39,10 @@ def tela_config(self):
 
         self.img_voltar = PhotoImage(file='voltar.png')
         self.botao_voltar = Button(self.window, image=self.img_voltar,borderwidth=0,bg='#d9d9d9', width=48,height=48, command=lambda:voltar(self, tela_deFundo))
-        self.botao_voltar.place(x=10,y=850)
+        self.botao_voltar.place(x=10,y=845)
 
 def voltar(self, telaVoltar):
     telaVoltar.destroy()
-    self.botao_voltar.destroy()
 
 def mudar_cor_fundo(self):
         #Mudar a cor de fundo da aplicação, acessando as propriedades do objeto window
