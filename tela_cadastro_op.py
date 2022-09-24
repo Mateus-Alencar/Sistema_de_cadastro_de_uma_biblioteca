@@ -1,11 +1,10 @@
 from f_tela_base import *
 
 def icon_comeco(self, usu):
-    self.window.destroy()
-    tela_padrao(self)
-    self.frame=Frame(self.window, bg='#D9D9D9')
+    self.frame.destroy()
+    self.frame = Frame(self.window, width='550', height='400', bg='#d9d9d9')
+    self.frame.place(x='190', y='70')
     self.img_livros = PhotoImage(file='pilha_de_livros.png')
-    self.frame.pack()
     self.icon=Label(self.frame, image=self.img_livros, width=140, height=140, bg='#d9d9d9')
     self.icon.pack()
     if usu == self.funcionario:
@@ -15,11 +14,11 @@ def icon_comeco(self, usu):
         label = Label(self.frame, text='Cliente', font='Arial 20 bold', bg='#d9d9d9', fg='black')
         label.pack()
 
-    self.frame2 = Frame(self.window).pack()
+    self.frame2 = Frame(self.frame).pack()
     button_cadastar = Button(self.frame2, text=('Cadastrar'), font='Arial 16 bold', width=10, height=2, bg='#00c2cb', fg='black')
-    button_cadastar.place(x=180, y= 660)
+    button_cadastar.place(x=195, y= 660)
     button_login = Button(self.frame2, text=('Login'), font='Arial 16 bold', width=10, height=2, bg='#00c2cb', fg='black')
-    button_login.place(x=180, y= 740)
+    button_login.place(x=195, y= 740)
 
 def tela_cadastroCliente(self, usu):
     icon_comeco(self, usu)
@@ -33,6 +32,10 @@ def tela_cadastroCliente(self, usu):
     entry_email = Entry(self.frame2, width=25, justify='left',font='Arial 15 bold', relief='solid')
     entry_email.place(x=130,y=350)
 
+    senha = Label(self.frame2, text='Senha: ',bg="#d9d9d9",font=('Ivy 15'))
+    senha.place(x=35,y=400)
+    entry_senha = Entry(self.frame2, width=25, justify='left',font='Arial 15 bold', relief='solid')
+    entry_senha.place(x=130,y=400)
 
 def tela_cadastroFuncionario(self, usu):
     icon_comeco(self, usu)
@@ -46,3 +49,12 @@ def tela_cadastroFuncionario(self, usu):
     entry_email = Entry(self.frame2, width=25, justify='left',font='Arial 15 bold', relief='solid')
     entry_email.place(x=130,y=350)
     
+    senha = Label(self.frame2, text='Senha: ',bg="#d9d9d9",font=('Ivy 15'))
+    senha.place(x=35,y=400)
+    entry_senha = Entry(self.frame2, width=25, justify='left',font='Arial 15 bold', relief='solid')
+    entry_senha.place(x=130,y=400)
+
+    cpf = Label(self.frame2, text='CPF: ',bg="#d9d9d9",font=('Ivy 15'))
+    cpf.place(x=35,y=450)
+    entry_cpf = Entry(self.frame2, width=25, justify='left',font='Arial 15 bold', relief='solid')
+    entry_cpf.place(x=130,y=450)

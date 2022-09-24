@@ -1,5 +1,7 @@
 from tkinter import *
+from tkinter import colorchooser
 from PIL import ImageTk, Image
+from tkinter.colorchooser import askcolor
 
 def tela_padrao(self):
         self.window = Tk()
@@ -27,7 +29,7 @@ def tela_config(self):
 
         botao_cad_log = Button(frame_menu, bg='black', fg='white',font='Arial 15 bold', text='Cadastrar/Login')
         botao_cad_log.place(x= 10, y= 160)
-        self.botao_cor_fundo = Button(frame_menu, bg='black', fg='white',font='Arial 15 bold', text='Tema escuro', command=lambda:mudar_cor_fundo(self))
+        self.botao_cor_fundo = Button(frame_menu, bg='black', fg='white',font='Arial 15 bold', text='Cor de fundo', command=lambda:mudar_cor_fundo(self))
         self.botao_cor_fundo.place(x= 10, y= 220)
         botao_som = Button(frame_menu, bg='black', fg='white',font='Arial 15 bold', text='Som')
         botao_som.place(x= 10, y= 280)
@@ -42,13 +44,13 @@ def voltar(self, telaVoltar):
 
 def mudar_cor_fundo(self):
         #Mudar a cor de fundo da aplicação, acessando as propriedades do objeto window
-        if self.window['bg'] == '#d9d9d9':
+        cor  = askcolor(title='cores')
+        self.window.config(bg=cor[1])
+        '''if self.window['bg'] == '#d9d9d9':
                 self.window.config(bg='black')
                 self.botao_cor_fundo['text'] = 'Tema claro'
                 self.botao_voltar['bg']='black'
         else:
                 self.window.config(bg='#d9d9d9')
                 self.botao_voltar['bg']='#d9d9d9'
-                self.botao_cor_fundo['text'] = 'Tema escuro'
-
-
+                self.botao_cor_fundo['text'] = 'Tema escuro'''

@@ -11,21 +11,20 @@ class app:
         tela_padrao(self)
 
         #Botões
-        cadastar = Button(self.window,text=('Login'), font='Arial 16 bold', width=20, height=15, bg='#00c2cb', fg='black', command=lambda:tela_Op_cadastros(self))
-        cadastar.place(x=-5, y= 80)
-        self.consultar = Button(self.window,text=('Consultar'), font='Arial 16 bold', width=20, height=15, bg='#00c2cb', fg='black', command=lambda:tela_consultas(self, self.consultar))
-        self.consultar.place(x=274, y= 80)
-        self.emprestimos = Button(self.window,text=('Emprestimos'), font='Arial 16 bold', width=20, height=15, bg='#00c2cb', fg='black', command=lambda:tela_consultas(self, self.emprestimos))
-        self.emprestimos.place(x=-5, y= 470)
-        livros = Button(self.window,text=('Livros'), font='Arial 16 bold', width=20, height=15, bg='#00c2cb', fg='black')
-        livros.place(x=274, y= 470)
+        self.frame = Frame(self.window, width='530', height='860', bg='#d9d9d9')
+        self.frame.place(x='2', y='70')
+        cadastar = Button(self.frame,text=('Login'), font='Arial 16 bold', width=20, height=15, bg='#00c2cb', fg='black', command=lambda:tela_Op_cadastros(self, self.frame))
+        cadastar.place(x=-5, y= 5)
+        self.consultar = Button(self.frame,text=('Consultar'), font='Arial 16 bold', width=20, height=15, bg='#00c2cb', fg='black', command=lambda:tela_consultas(self, self.frame, self.consultar))
+        self.consultar.place(x=274, y= 5)
+        self.emprestimos = Button(self.frame,text=('Emprestimos'), font='Arial 16 bold', width=20, height=15, bg='#00c2cb', fg='black', command=lambda:tela_consultas(self,self.frame, self.emprestimos))
+        self.emprestimos.place(x=-5, y= 390)
+        livros = Button(self.frame,text=('Livros'), font='Arial 16 bold', width=20, height=15, bg='#00c2cb', fg='black')
+        livros.place(x=274, y= 390)
         img = PhotoImage(file='livros.png')
-        link_cadastrarLivro = Button(self.window,text='Cadastrar livros',width=160, height=29,borderwidth=5, image=img, compound=LEFT, command=lambda:tela_cadastrarLivros(self))
-        link_cadastrarLivro.place(x=340, y=855)
+        link_cadastrarLivro = Button(self.frame,text='Cadastrar livros',width=160, height=29,borderwidth=5, image=img, compound=LEFT, command=lambda:tela_cadastrarLivros(self, self.frame))
+        link_cadastrarLivro.place(x=340, y=780)
 
         self.window.mainloop()
-    
-
-       
 
 app()
