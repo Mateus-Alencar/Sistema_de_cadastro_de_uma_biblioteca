@@ -37,12 +37,13 @@ def tela_config(self):
         botao_som = Button(frame_menu, bg='black', fg='white',font='Arial 15 bold', text='Som')
         botao_som.place(x= 10, y= 280)
 
-        self.img_voltar = PhotoImage(file='voltar.png')
-        self.botao_voltar = Button(self.window, image=self.img_voltar,borderwidth=0,bg='#d9d9d9', width=48,height=48, command=lambda:voltar(self, tela_deFundo))
-        self.botao_voltar.place(x=10,y=845)
+        self.img_voltar_c = PhotoImage(file='voltar.png')
+        self.botao_voltar_c = Button(self.window, image=self.img_voltar_c,borderwidth=0,bg='#d9d9d9', width=48,height=48, command=lambda:voltar(self, tela_deFundo))
+        self.botao_voltar_c.place(x=10,y=845)
 
 def voltar(self, telaVoltar):
     telaVoltar.destroy()
+    self.botao_voltar_c.destroy()
 
 def mudar_cor_fundo(self):
         #Mudar a cor de fundo da aplicação, acessando as propriedades do objeto window

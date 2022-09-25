@@ -20,6 +20,10 @@ def icon_comeco(self, usu):
     button_login = Button(self.frame2, text=('Login'), font='Arial 16 bold', width=10, height=2, bg='#00c2cb', fg='black')
     button_login.place(x=195, y= 740)
 
+    self.img_voltar = PhotoImage(file='voltar.png')
+    self.botao_voltar = Button(self.window, image=self.img_voltar,borderwidth=0,bg='#d9d9d9', width=48,height=48, command=lambda:self.voltar_app())
+    self.botao_voltar.place(x=10,y=845)
+
 def tela_cadastroCliente(self, usu):
     icon_comeco(self, usu)
     nome = Label(self.frame2, text='Nome: ',bg="#d9d9d9",font=('Ivy 15'))

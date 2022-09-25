@@ -28,4 +28,8 @@ class app:
 
         self.window.mainloop()
 
+    def voltar_app(self):
+        self.window.destroy()
+        app()
+
 app()
