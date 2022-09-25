@@ -10,8 +10,9 @@ from tela_livros import *
 class app:
     def __init__(self):
         tela_padrao(self)
-
+        self.com()
         #Botões
+    def com(self):
         self.frame = Frame(self.window, width='530', height='770', bg='#d9d9d9')
         self.frame.place(x='2', y='70')
         cadastar = Button(self.frame,text=('Login'), font='Arial 16 bold', width=20, height=15, bg='#00c2cb', fg='black', command=lambda:tela_Op_cadastros(self, self.frame))
@@ -28,8 +29,8 @@ class app:
 
         self.window.mainloop()
 
-    def voltar_app(self):
-        self.window.destroy()
-        app()
+    def voltar_app(self, frame):
+        frame.destroy()
+        self.com()
 
 app()

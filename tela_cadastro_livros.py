@@ -4,7 +4,7 @@ from f_tela_base import *
 #Referente a tela de consulta
 def tela_cadastrarLivros(self, frame):
     frame.destroy()
-    self.frame = Frame(self.window, width='550', height='700',bg='#d9d9d9')
+    self.frame = Frame(self.window, width='550', height='750',bg='#d9d9d9')
     self.frame.place(x='2', y='70')
     id_livro = Label(self.frame, text='Id_livro: ',bg="#a9a9a9",font=('Ivy 15'))
 
@@ -18,16 +18,22 @@ def tela_cadastrarLivros(self, frame):
     entry_autor = Entry(self.frame, width=25, justify='left',font='Arial 15 bold', relief='solid')
     entry_autor.place(x=100,y=150)
 
-    label_editora = Label(self.frame, text='Editora: ',bg="#a9a9a9",font=('Ivy 15'))
-    label_editora.place(x=35, y=200)
-    entry_editora = Entry(self.frame, width=22, justify='left',font='Arial 15 bold', relief='solid')
-    entry_editora.place(x=130,y=200)
+    label_descricao = Label(self.frame, text='Descrição: ',bg="#a9a9a9",font=('Ivy 15'))
+    label_descricao.place(x=35, y=200)
+    entry_descricao = Entry(self.frame, width=22, justify='left',font='Arial 15 bold', relief='solid')
+    entry_descricao.place(x=100,y=200)
 
-    label_paginas = Label(self.frame, text='N° de páginas: ',bg="#a9a9a9",font=('Ivy 15'))
-    label_paginas.place(x=35, y=250)
-    entry_paginas = Entry(self.frame, width=8, justify='left',font='Arial 15 bold', relief='solid')
-    entry_paginas.place(x=190,y=250)
+
+    botao_salvar = Button(self.frame, text='Salvar', bg='red', fg='white',width=18, font='Ivy 18', command=lambda:salvar())
+    botao_salvar.place(x=120, y=500)
+    botao_cancelar = Button(self.frame, text='Cancelar', bg='red', fg='white',width=18, font='Ivy 18', command=lambda:cancelar(self))
+    botao_cancelar.place(x=120, y=550)
+
+    def salvar():
+        pass
+    def cancelar(self):
+        pass
 
     self.img_voltar = PhotoImage(file='voltar.png')
-    self.botao_voltar = Button(self.window, image=self.img_voltar,borderwidth=0,bg='#d9d9d9', width=48,height=48, command=lambda:self.voltar_app())
+    self.botao_voltar = Button(self.window, image=self.img_voltar,borderwidth=0,bg='#d9d9d9', width=48,height=48, command=lambda:self.voltar_app(self.frame))
     self.botao_voltar.place(x=10,y=845)
