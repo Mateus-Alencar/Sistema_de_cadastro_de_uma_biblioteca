@@ -5,22 +5,19 @@ from PIL import ImageTk, Image
 from tkinter.colorchooser import askcolor
 
 def tela_padrao(self):
-        barraAzul = Frame(self.window,borderwidth=0, width=520, height=90, bg='#004aad')
+        barraAzul = Frame(self.window,borderwidth=0, width=520, height=80, bg='#004aad')
         barraAzul.pack()
-        self.photo = PhotoImage(file='menu.png')
-        self.barraMenu = Button(self.window, image=self.photo ,width=48,border=0, height=48,bg='#004aad', command=lambda:tela_config(self))
-        self.barraMenu.place(x=25, y=18)
+        if self.telaIn != False:
+                self.photo = PhotoImage(file='menu.png')
+                self.barraMenu = Button(self.window, image=self.photo ,width=48,border=0, height=48,bg='#004aad', command=lambda:tela_config(self))
+                self.barraMenu.place(x=25, y=15)
         
 
 def tela_config(self):
         tela_deFundo = PanedWindow(self.window,borderwidth=0, bg='#a9a9a9',relief='raised',bd=2, orient=VERTICAL)
-        tela_deFundo.place(x=10,y=50)
-        frame_menu = Frame(tela_deFundo, width=300, height=350)
+        tela_deFundo.place(x=1,y=80)
+        frame_menu = Frame(tela_deFundo, width=350, height=550)
         frame_menu.pack()
-        
-        self.img_fundo = PhotoImage(file='tela_config_fundo.png')
-        img = Label(tela_deFundo,text='Usuários',image=self.img_fundo, height=150, width=300)
-        img.place(x=-1, y= -1)
 
         botao_cad_log = Button(frame_menu, bg='black', fg='white',font='Arial 15 bold', text='Cadastrar/Login')
         botao_cad_log.place(x= 10, y= 160)

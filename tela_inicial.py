@@ -17,11 +17,11 @@ class app:
         self.icon.place(y='100', x= '140')
         texto = Label(self.frame, text='BIBLIOTECA', font='Impact 30 bold', bg='#004aad')
         texto.place(x=160, y=400)
-        btm_iniciar = Button(self.frame, text='Iniciar', bg='black',borderwidth=4, fg='white',width=18, font='Ivy 18', command=lambda:tela_Op_cadastros(self, self.frame))
+        btm_iniciar = Button(self.frame, text='Iniciar', bg='black',borderwidth=4, fg='white',width=18, font='Ivy 18', command=lambda:tela_Op_cadastros(self))
         btm_iniciar.place(x=130, y=510)
         self.window.mainloop()
 
-    def voltar_app(self, frame):
-        tela_Op_cadastros(self, frame)
+    def voltar_app(self):
+        tela_Op_cadastros(self)
 
 app()
