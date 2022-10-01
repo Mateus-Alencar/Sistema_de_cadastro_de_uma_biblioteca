@@ -5,7 +5,7 @@ from f_tela_base import *
 def tela_cadastrarLivros(self, frame):
     frame.destroy()
     self.frame = Frame(self.window, width='550', height='750',bg='#d9d9d9')
-    self.frame.place(x='2', y='70')
+    self.frame.place(x='2', y='90')
     id_livro = Label(self.frame, text='Id_livro: ',bg="#a9a9a9",font=('Ivy 15'))
 
     label_titulo = Label(self.frame, text='Titulo: ',bg="#a9a9a9",font=('Ivy 15'))

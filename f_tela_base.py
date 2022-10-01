@@ -5,20 +5,12 @@ from PIL import ImageTk, Image
 from tkinter.colorchooser import askcolor
 
 def tela_padrao(self):
-        self.window = Tk()
-        self.window.title('Tela inicial')
-        self.window.geometry('520x900')
-        self.window.resizable(0,0)
-        self.window.config(bg='#d9d9d9')
-
-        barraAzul = Frame(self.window,borderwidth=0, width=520, height=70, bg='#008dd2')
+        barraAzul = Frame(self.window,borderwidth=0, width=520, height=90, bg='#004aad')
         barraAzul.pack()
         self.photo = PhotoImage(file='menu.png')
-        self.barraMenu = Button(self.window, image=self.photo ,width=48, height=48,bg='#31af91', command=lambda:tela_config(self))
-        self.barraMenu.place(x=10, y=10)
-        texto = Label(self.window, text='SISTEMA DE CADASTRO', font='Impact 23 bold', bg='#008dd2')
-        texto.place(x=120, y=10)
-        frameV = Frame(self.window).place(x=0, y=800)
+        self.barraMenu = Button(self.window, image=self.photo ,width=48,border=0, height=48,bg='#004aad', command=lambda:tela_config(self))
+        self.barraMenu.place(x=25, y=18)
+        
 
 def tela_config(self):
         tela_deFundo = PanedWindow(self.window,borderwidth=0, bg='#a9a9a9',relief='raised',bd=2, orient=VERTICAL)
