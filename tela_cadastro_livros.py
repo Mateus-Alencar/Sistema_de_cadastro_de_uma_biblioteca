@@ -2,9 +2,9 @@ from turtle import width
 from f_tela_base import *
 
 #Referente a tela de consulta
-def tela_cadastrarLivros(self, frame):
-    frame.destroy()
-    self.frame = Frame(self.window, width='550', height='750',bg='#d9d9d9')
+def tela_cadastrarLivros(self):
+    self.frame.destroy()
+    self.frame = Frame(self.window, width='550', height='850',bg='#d9d9d9')
     self.frame.place(x='2', y='90')
     id_livro = Label(self.frame, text='Id_livro: ',bg="#a9a9a9",font=('Ivy 15'))
 
@@ -35,5 +35,5 @@ def tela_cadastrarLivros(self, frame):
         pass
 
     self.img_voltar = PhotoImage(file='voltar.png')
-    self.botao_voltar = Button(self.window, image=self.img_voltar,borderwidth=0,bg='#d9d9d9', width=48,height=48, command=lambda:self.voltar_app(self.frame))
-    self.botao_voltar.place(x=10,y=845)
+    self.botao_voltar = Button(self.frame, image=self.img_voltar,borderwidth=0,bg='#d9d9d9', width=48,height=48, command=lambda:self.voltar_app(self))
+    self.botao_voltar.place(x=10,y=745)

@@ -1,10 +1,10 @@
 from f_tela_base import *
-from tela_cadastro_op import *
+from tela_cadastro_op import tela_cadastroCliente, tela_cadastroFuncionario, tela_login
 
 def tela_Op_cadastros(self):
     self.frame.destroy()
-    self.telaIn = False
     tela_padrao(self)
+    self.barraMenu.destroy()
     self.frame = Frame(self.window, width='530', height='810', bg='#d9d9d9')
     self.frame.place(x='0', y='80')
 

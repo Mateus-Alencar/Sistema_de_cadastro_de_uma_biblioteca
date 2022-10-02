@@ -1,6 +1,7 @@
 from tkinter import *
 from f_tela_base import *
 from tela_opcaoDeCadastro import *
+from tela_app import *
 
 class app:
     def __init__(self):
@@ -21,7 +22,10 @@ class app:
         btm_iniciar.place(x=130, y=510)
         self.window.mainloop()
 
-    def voltar_app(self):
+    def voltar_in(self):
         tela_Op_cadastros(self)
+
+    def voltar_app(self):
+        tela_app(self)
 
 app()

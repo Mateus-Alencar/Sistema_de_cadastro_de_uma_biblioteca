@@ -3,6 +3,7 @@ from tela_app import *
 
 def icon_comeco(self, usu):
     self.frame.destroy()
+    self.barraMenu.destroy()
     self.frame = Frame(self.window, width='530', height='810', bg='#d9d9d9')
     self.frame.place(x='0', y='80')
     self.img_livros = PhotoImage(file='pilha_de_livros.png')
@@ -27,7 +28,7 @@ def icon_comeco(self, usu):
         
 
     self.img_voltar = PhotoImage(file='voltar.png')
-    self.botao_voltar = Button(self.frame, image=self.img_voltar,borderwidth=0,bg='#d9d9d9', width=48,height=48, command=lambda:self.voltar_app())
+    self.botao_voltar = Button(self.frame, image=self.img_voltar,borderwidth=0,bg='#d9d9d9', width=48,height=48, command=lambda:self.voltar_in())
     self.botao_voltar.place(x=10,y=745)
 
 def tela_cadastroCliente(self, usu):
@@ -83,10 +84,12 @@ def tela_login(self, usu):
 
 
 def consulta_banco(self):
-    lista = {'mateus':'123', 'ana':'1234'}
+    lista = {'mateus':'123', 'ana':'1234', '1':'1'}
     email = self.entry_email.get()
     senha = self.entry_senha.get()
 
     if email in lista:
         if lista[email] == senha:
             tela_app(self)
+
+            

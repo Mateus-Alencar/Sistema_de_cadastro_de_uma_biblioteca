@@ -7,10 +7,9 @@ from tkinter.colorchooser import askcolor
 def tela_padrao(self):
         barraAzul = Frame(self.window,borderwidth=0, width=520, height=80, bg='#004aad')
         barraAzul.pack()
-        if self.telaIn != False:
-                self.photo = PhotoImage(file='menu.png')
-                self.barraMenu = Button(self.window, image=self.photo ,width=48,border=0, height=48,bg='#004aad', command=lambda:tela_config(self))
-                self.barraMenu.place(x=25, y=15)
+        self.photo = PhotoImage(file='menu.png')
+        self.barraMenu = Button(self.window, image=self.photo ,width=48,border=0, height=48,bg='#004aad', command=lambda:tela_config(self))
+        self.barraMenu.place(x=25, y=15)
         
 
 def tela_config(self):
@@ -28,7 +27,7 @@ def tela_config(self):
 
         self.img_voltar_c = PhotoImage(file='voltar.png')
         self.botao_voltar_c = Button(self.window, image=self.img_voltar_c,borderwidth=0,bg='#d9d9d9', width=48,height=48, command=lambda:voltar(self, tela_deFundo))
-        self.botao_voltar_c.place(x=10,y=845)
+        self.botao_voltar_c.place(x=10,y=865)
 
 def voltar(self, telaVoltar):
     telaVoltar.destroy()
