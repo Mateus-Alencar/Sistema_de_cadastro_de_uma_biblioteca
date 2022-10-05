@@ -84,6 +84,7 @@ def tela_login(self, usu):
 
 
 def consulta_banco(self):
+    # try end exception
     lista = {'mateus':'123', 'ana':'1234', '1':'1'}
     email = self.entry_email.get()
     senha = self.entry_senha.get()
