@@ -18,6 +18,10 @@ def tela_app(self):
     self.livros = Button(self.frame,text=('Livros'), font='Ivy 17 bold', width=28, height=2, bg='blue', fg='black', command=lambda:tela_cadastrarLivros(self))
     self.livros.place(x=60, y=400)
 
+    self.img_livros = PhotoImage(file='livrosB.png')
+    self.icon=Label(self.frame, image=self.img_livros, width=260, height=260, bg='#d9d9d9')
+    self.icon.place(y='500', x= '140')
+
     self.img_voltar = PhotoImage(file='voltar.png')
     self.botao_voltar = Button(self.frame, image=self.img_voltar,borderwidth=0,bg='#d9d9d9', width=48,height=48, command=lambda:self.voltar_in())
     self.botao_voltar.place(x=10,y=745)

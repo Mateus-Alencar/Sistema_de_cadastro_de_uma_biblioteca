@@ -1,4 +1,3 @@
-from tkinter import *
 from f_tela_base import *
 from tela_opcaoDeCadastro import *
 from tela_app import *
@@ -23,9 +22,16 @@ class app:
         self.window.mainloop()
 
     def voltar_in(self):
+        self.barraMenu.destroy()
         tela_Op_cadastros(self)
 
     def voltar_app(self):
+        self.tela_deFundo.destroy()
         tela_app(self)
+
+    def tela_cadastros(self):
+        self.tela_deFundo.destroy()
+        self.barraMenu.destroy()
+        tela_Op_cadastros(self)
 
 app()

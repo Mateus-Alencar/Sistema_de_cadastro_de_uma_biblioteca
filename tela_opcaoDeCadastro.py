@@ -3,8 +3,8 @@ from tela_cadastro_op import tela_cadastroCliente, tela_cadastroFuncionario, tel
 
 def tela_Op_cadastros(self):
     self.frame.destroy()
-    tela_padrao(self)
-    self.barraMenu.destroy()
+    barraAzul = Frame(self.window,borderwidth=0, width=520, height=80, bg='#004aad')
+    barraAzul.pack()
     self.frame = Frame(self.window, width='530', height='810', bg='#d9d9d9')
     self.frame.place(x='0', y='80')
 

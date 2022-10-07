@@ -3,12 +3,13 @@ from tela_app import *
 
 def icon_comeco(self, usu):
     self.frame.destroy()
-    self.barraMenu.destroy()
+    barraAzul = Frame(self.window,borderwidth=0, width=520, height=80, bg='#004aad')
+    barraAzul.pack()
     self.frame = Frame(self.window, width='530', height='810', bg='#d9d9d9')
     self.frame.place(x='0', y='80')
     self.img_livros = PhotoImage(file='pilha_de_livros.png')
     self.icon=Label(self.frame, image=self.img_livros, width=140, height=140, bg='#d9d9d9')
-    self.icon.place(x=200, y= 40)
+    self.icon.place(x=180, y= 40)
 
     btm_cadastrar = Button(self.frame, text='Cadastrar', bg='black',borderwidth=4, fg='white',width=15, font='Ivy 16', command=lambda:consulta_banco(self))
     btm_cadastrar.place(x=170, y=510)
