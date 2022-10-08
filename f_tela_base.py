@@ -19,7 +19,7 @@ def tela_menu(self):
         botao_home.place(x= 8, y= 0)
         linha = Label(frame_menu,bg='#B0C4DE', text='_____________________________________________________________', font='Ivy 8 bold')
         linha.place(x=0,y=40)
-        botao_Cadastrar = Button(frame_menu, bg='#B0C4DE', fg='black',borderwidth=0,font='Arial 18 bold', text='Cadastrar', command=lambda:self.tela_cadastros())
+        botao_Cadastrar = Button(frame_menu, bg='#B0C4DE', fg='black',borderwidth=0,font='Arial 18 bold', text='Cadastrar', command=lambda:self.voltar_tela_cadastros())
         botao_Cadastrar.place(x= 8, y= 60)
         linha = Label(frame_menu,bg='#B0C4DE', text='_____________________________________________________________', font='Ivy 8 bold')
         linha.place(x=0,y=100)
@@ -43,9 +43,7 @@ def tela_menu(self):
 def voltar(self):
     self.tela_deFundo.destroy()
     self.botao_voltar_c.destroy()
-    self.barraMenu.destroy()
-    self.barraMenu = Button(self.window, image=self.photo ,width=140,border=0, height=48,bg='#004aad', command=lambda:tela_menu(self))
-    self.barraMenu.place(x=5, y=15)
+    self.barraMenu['text']=None
 
 def mudar_cor_fundo(self):
         #Mudar a cor de fundo da aplicação, acessando as propriedades do objeto window

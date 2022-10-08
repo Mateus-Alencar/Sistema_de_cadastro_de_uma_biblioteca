@@ -21,17 +21,18 @@ class app:
         btm_iniciar.place(x=130, y=510)
         self.window.mainloop()
 
-    def voltar_in(self):
-        self.barraMenu.destroy()
+    def ex(self):
+        if __name__ == 'tela_menu' or __name__ == 'tela_padrao':
+            self.barraMenu.destroy()
+            self.tela_deFundo.destroy()
+
+    def voltar_tela_cadastros(self):
+        self.ex()
         tela_Op_cadastros(self)
 
     def voltar_app(self):
-        self.tela_deFundo.destroy()
+        self.ex()
         tela_app(self)
 
-    def tela_cadastros(self):
-        self.tela_deFundo.destroy()
-        self.barraMenu.destroy()
-        tela_Op_cadastros(self)
 
 app()

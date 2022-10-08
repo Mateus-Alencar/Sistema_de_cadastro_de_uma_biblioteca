@@ -3,10 +3,12 @@ from tela_cadastro_op import tela_cadastroCliente, tela_cadastroFuncionario, tel
 
 def tela_Op_cadastros(self):
     self.frame.destroy()
-    barraAzul = Frame(self.window,borderwidth=0, width=520, height=80, bg='#004aad')
-    barraAzul.pack()
+    self.ex()
     self.frame = Frame(self.window, width='530', height='810', bg='#d9d9d9')
-    self.frame.place(x='0', y='80')
+    self.frame.place(x='0', y='0')
+
+    barraAzul = Frame(self.frame,borderwidth=0, width=520, height=80, bg='#004aad')
+    barraAzul.place(x=0,y=0)
 
     self.titulo = Label(self.frame, text='CADASTRAR', font='Ivy 34 bold',bg='#d9d9d9')
     self.titulo.place(x=120, y=90)
