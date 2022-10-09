@@ -1,4 +1,5 @@
 from tkinter import *
+from tela_config import *
 
 def tela_padrao(self):
         barraAzul = Frame(self.window,borderwidth=0, width=520, height=80, bg='#004aad')
@@ -35,6 +36,10 @@ def tela_menu(self):
         botao_Livros.place(x= 8, y= 240)
         linha = Label(frame_menu,bg='#B0C4DE', text='_____________________________________________________________', font='Ivy 8 bold')
         linha.place(x=0,y=280)
+        botao_config = Button(frame_menu, bg='#B0C4DE', fg='black',borderwidth=0,font='Arial 18 bold', text='Configurações', command=lambda:self.config())
+        botao_config.place(x= 8, y= 300)
+        linha = Label(frame_menu,bg='#B0C4DE', text='_____________________________________________________________', font='Ivy 8 bold')
+        linha.place(x=0,y=340)
 
         self.img_voltar_c = PhotoImage(file='voltar.png')
         self.botao_voltar_c = Button(self.window, image=self.img_voltar_c,borderwidth=0,bg='#d9d9d9', width=48,height=48, command=lambda:voltar(self))
@@ -43,7 +48,7 @@ def tela_menu(self):
 def voltar(self):
     self.tela_deFundo.destroy()
     self.botao_voltar_c.destroy()
-    self.barraMenu['text']=None
+    self.barraMenu['text']=''
 
 def mudar_cor_fundo(self):
         #Mudar a cor de fundo da aplicação, acessando as propriedades do objeto window

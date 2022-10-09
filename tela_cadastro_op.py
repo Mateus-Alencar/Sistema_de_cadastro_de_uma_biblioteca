@@ -1,5 +1,8 @@
+import time
+from tkinter.ttk import Progressbar
 from f_tela_base import *
 from tela_app import *
+
 
 def icon_comeco(self, usu):
     self.frame.destroy()
@@ -46,7 +49,7 @@ def tela_cadastroCliente(self, usu):
 
     senha = Label(self.frame, text='Senha: ',bg="#d9d9d9",font=('Ivy 15'))
     senha.place(x=35,y=400)
-    entry_senha = Entry(self.frame, width=25, justify='left',font='Arial 15 bold', relief='solid')
+    entry_senha = Entry(self.frame, width=25, justify='left',font='Arial 15 bold', relief='solid',show='*')
     entry_senha.place(x=130,y=400)
 
 def tela_cadastroFuncionario(self, usu):
@@ -63,7 +66,7 @@ def tela_cadastroFuncionario(self, usu):
     
     senha = Label(self.frame, text='Senha: ',bg="#d9d9d9",font=('Ivy 15'))
     senha.place(x=35,y=400)
-    entry_senha = Entry(self.frame, width=25, justify='left',font='Arial 15 bold', relief='solid')
+    entry_senha = Entry(self.frame, width=25, justify='left',font='Arial 15 bold', relief='solid',show='*')
     entry_senha.place(x=130,y=400)
 
     cpf = Label(self.frame, text='CPF: ',bg="#d9d9d9",font=('Ivy 15'))
@@ -76,12 +79,12 @@ def tela_login(self, usu):
     label_email = Label(self.frame, text='E-mail: ',bg="#a9a9a9",font=('Ivy 15'))
     label_email.place(x=35, y=300)
     self.entry_email = Entry(self.frame, width=25, justify='left',font='Arial 15 bold', relief='solid')
-    self.entry_email.place(x=100,y=300)
+    self.entry_email.place(x=130,y=300)
 
     label_senha = Label(self.frame, text='Senha: ',bg="#a9a9a9",font=('Ivy 15'))
     label_senha.place(x=35, y=350)
-    self.entry_senha = Entry(self.frame, width=25, justify='left',font='Arial 15 bold', relief='solid')
-    self.entry_senha.place(x=100,y=350)
+    self.entry_senha = Entry(self.frame, width=25, justify='left',font='Arial 15 bold', relief='solid', show='*')
+    self.entry_senha.place(x=130,y=350)
 
 
 def consulta_banco(self):
@@ -92,6 +95,18 @@ def consulta_banco(self):
 
     if email in lista:
         if lista[email] == senha:
+            tempo(self)
             tela_app(self)
+
+def tempo(self):
+    self.bar = Progressbar(self.window, orient=HORIZONTAL,length=350)
+    self.bar.place(x=70,y=500)
+    for i in range(10):
+        time.sleep(0.2)
+        self.bar['value']+=10
+        self.bar.update()
+        if self.bar['value'] == 100:
+            self.bar.destroy()
+    
 
             

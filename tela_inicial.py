@@ -1,6 +1,7 @@
 from f_tela_base import *
 from tela_opcaoDeCadastro import *
 from tela_app import *
+from tela_config import *
 
 class app:
     def __init__(self):
@@ -26,13 +27,18 @@ class app:
             self.barraMenu.destroy()
             self.tela_deFundo.destroy()
 
+
     def voltar_tela_cadastros(self):
         self.ex()
         tela_Op_cadastros(self)
 
     def voltar_app(self):
-        self.ex()
+        self.barraMenu['text']=''
         tela_app(self)
+
+        
+    def config(self):
+        tela_config(self)        
 
 
 app()
