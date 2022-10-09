@@ -1,4 +1,6 @@
+import time
 from tkinter import *
+from tkinter.ttk import Progressbar
 from tela_config import *
 
 def tela_padrao(self):
@@ -60,3 +62,17 @@ def mudar_cor_fundo(self):
                 self.window.config(bg='#d9d9d9')
                 self.botao_voltar['bg']='#d9d9d9'
                 self.botao_cor_fundo['text'] = 'Tema escuro'
+
+def tempo(self):
+    info = Label(font='Arial 10 bold', text='Carregando banco', bg='#d9d9d9')
+    info.place(x=190,y=480)
+    self.bar = Progressbar(self.window, orient=HORIZONTAL,length=350)
+    self.bar.place(x=70,y=500)
+    for i in range(10):
+        time.sleep(0.2)
+        self.bar['value']+=10
+        self.bar.update()
+        if self.bar['value'] == 60:
+                info['text'] =  'Checando informações'
+        if self.bar['value'] == 100:
+            self.bar.destroy()

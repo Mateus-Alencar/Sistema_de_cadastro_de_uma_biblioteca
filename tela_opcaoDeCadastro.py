@@ -7,6 +7,10 @@ def tela_Op_cadastros(self):
     self.frame = Frame(self.window, width='530', height='810', bg='#d9d9d9')
     self.frame.place(x='0', y='0')
 
+    self.img = PhotoImage(file='fundo.png')
+    self.tela_fundo = Label(self.frame,image=self.img)
+    self.tela_fundo.place(x=0,y=0)
+
     barraAzul = Frame(self.frame,borderwidth=0, width=520, height=80, bg='#004aad')
     barraAzul.place(x=0,y=0)
 

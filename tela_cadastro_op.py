@@ -1,5 +1,3 @@
-import time
-from tkinter.ttk import Progressbar
 from f_tela_base import *
 from tela_app import *
 
@@ -98,15 +96,5 @@ def consulta_banco(self):
             tempo(self)
             tela_app(self)
 
-def tempo(self):
-    self.bar = Progressbar(self.window, orient=HORIZONTAL,length=350)
-    self.bar.place(x=70,y=500)
-    for i in range(10):
-        time.sleep(0.2)
-        self.bar['value']+=10
-        self.bar.update()
-        if self.bar['value'] == 100:
-            self.bar.destroy()
-    
 
             
