@@ -1,6 +1,6 @@
 from f_tela_base import *
 from tela_app import *
-
+from banco import *
 
 def icon_comeco(self, usu):
     self.frame.destroy()
@@ -13,7 +13,7 @@ def icon_comeco(self, usu):
     self.icon=Label(self.frame, image=self.img_livros, width=140, height=140, bg='#d9d9d9')
     self.icon.place(x=180, y= 40)
 
-    btm_cadastrar = Button(self.frame, bg='black',borderwidth=4, fg='white',width=15, font='Ivy 16', command=lambda:consulta_banco(self))
+    btm_cadastrar = Button(self.frame, bg='black',borderwidth=4, fg='white',width=15, font='Ivy 16', command=lambda:login(self, self.entry_email.get(), self.entry_senha.get()))
     btm_cadastrar.place(x=170, y=510)
     label = Label(self.frame, font='Arial 20 bold', bg='#d9d9d9', fg='black')
     label.place(x=190, y= 190)
@@ -84,17 +84,5 @@ def tela_login(self, usu):
     self.entry_senha = Entry(self.frame, width=25, justify='left',font='Arial 15 bold', relief='solid', show='*')
     self.entry_senha.place(x=130,y=350)
 
-
-def consulta_banco(self):
-    # try end exception
-    lista = {'mateus':'123', 'ana':'1234', '1':'1'}
-    email = self.entry_email.get()
-    senha = self.entry_senha.get()
-
-    if email in lista:
-        if lista[email] == senha:
-            tempo(self)
-            tela_app(self)
-
-
             
+

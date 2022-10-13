@@ -63,6 +63,7 @@ def mudar_cor_fundo(self):
                 self.botao_voltar['bg']='#d9d9d9'
                 self.botao_cor_fundo['text'] = 'Tema escuro'
 
+
 def tempo(self):
     info = Label(font='Arial 10 bold', text='Carregando banco', bg='#d9d9d9')
     info.place(x=190,y=480)
@@ -76,3 +77,4 @@ def tempo(self):
                 info['text'] =  'Checando informações'
         if self.bar['value'] == 100:
             self.bar.destroy()
+            info.destroy()
