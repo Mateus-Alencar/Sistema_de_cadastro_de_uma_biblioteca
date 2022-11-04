@@ -25,10 +25,9 @@ def tela_cadastrarLivros(self):
     self.entry_descricao = Entry(self.frame, width=22, justify='left',font='Arial 15 bold', relief='solid')
     self.entry_descricao.place(x=140,y=200)
 
-    self.file=''
     label_foto = Label(self.frame, text='Imagem do livro: ',bg="#a9a9a9",font=('Ivy 15'))
     label_foto.place(x=35, y=250)
-    self.entry_foto = Button(self.frame, width=16, height=10, justify='left', relief='solid', command=lambda:filenames())
+    self.entry_foto = Button(self.frame, width=20, height=2, justify='left', relief='solid', command=lambda:filenames(self))
     self.entry_foto.place(x=200,y=250)
 
 
@@ -38,11 +37,12 @@ def tela_cadastrarLivros(self):
     botao_cancelar.place(x=120, y=550)
 
     def filenames(self):
-        self.file = filedialog.askopenfilenames()
+        file = filedialog.askopenfilenames()
+        self.entry_foto.insert(0, file)
 
 
-    def salvar():
-        if self.file.get() == '':
+    def salvar(self):
+        if self.file == '':
             label = Label(self.frame, text='Inserir caminho da imagem!',bg="#a9a9a9",font=('Ivy 15'))
             label.place(x=35, y=400)
         else:

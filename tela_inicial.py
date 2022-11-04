@@ -2,6 +2,7 @@ from tela_opcaoDeCadastro import *
 from tela_app import *
 from tela_config import *
 from tela_livros import *
+from tela_consultas import *
 
 class app:
     def __init__(self):
@@ -39,6 +40,8 @@ class app:
     def t_app(self):
         tela_app(self)
 
+    def tela_consult(self):
+        tela_consultas(self)
         
     def config(self):
         tela_config(self)

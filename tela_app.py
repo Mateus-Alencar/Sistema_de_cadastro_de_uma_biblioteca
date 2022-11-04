@@ -10,7 +10,7 @@ def tela_app(self):
     
     self.cadastrar = Button(self.frame,text=('Cadastrar'), font='Ivy 17 bold', width=28, height=2, bg='blue', fg='black', command=lambda:self.voltar_tela_cadastros())
     self.cadastrar.place(x=60, y=100)
-    self.consultar = Button(self.frame,text=('Consultar'), font='Ivy 17 bold', width=28, height=2, bg='blue', fg='black')
+    self.consultar = Button(self.frame,text=('Consultar'), font='Ivy 17 bold', width=28, height=2, bg='blue', fg='black', command=lambda:self.tela_consult())
     self.consultar.place(x=60, y=200)
     self.emprestimos = Button(self.frame,text=('Empréstimos'), font='Ivy 17 bold', width=28, height=2, bg='blue', fg='black')
     self.emprestimos.place(x=60, y=300)

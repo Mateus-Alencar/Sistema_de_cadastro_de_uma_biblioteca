@@ -26,7 +26,7 @@ def tela_menu(self):
         botao_Cadastrar.place(x= 8, y= 60)
         linha = Label(frame_menu,bg='#B0C4DE', text='_____________________________________________________________', font='Ivy 8 bold')
         linha.place(x=0,y=100)
-        botao_Consultar = Button(frame_menu, bg='#B0C4DE', fg='black',borderwidth=0,font='Arial 18 bold', text='Consultar')
+        botao_Consultar = Button(frame_menu, bg='#B0C4DE', fg='black',borderwidth=0,font='Arial 18 bold', text='Consultar', command=lambda:self.tela_consult())
         botao_Consultar.place(x= 8, y= 120)
         linha = Label(frame_menu,bg='#B0C4DE', text='_____________________________________________________________', font='Ivy 8 bold')
         linha.place(x=0,y=160)
