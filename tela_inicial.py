@@ -1,7 +1,7 @@
-from f_tela_base import *
 from tela_opcaoDeCadastro import *
 from tela_app import *
 from tela_config import *
+from tela_livros import *
 
 class app:
     def __init__(self):
@@ -35,10 +35,16 @@ class app:
     def voltar_app(self):
         self.barraMenu['text']=''
         tela_app(self)
+        
+    def t_app(self):
+        tela_app(self)
 
         
     def config(self):
-        tela_config(self)        
+        tela_config(self)
+    
+    def tela_l(self):
+        tela_livros(self)
 
 
 app()

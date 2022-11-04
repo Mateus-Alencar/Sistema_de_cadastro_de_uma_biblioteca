@@ -13,7 +13,7 @@ def tela_padrao(self):
 
 def tela_menu(self):
         self.tela_deFundo = PanedWindow(self.window,borderwidth=0, bg='#a9a9a9',relief='raised',bd=2, orient=VERTICAL)
-        self.tela_deFundo.place(x=1,y=80)
+        self.tela_deFundo.place(x=1,y=90)
         frame_menu = Frame(self.tela_deFundo, width=350, height=550, bg='#B0C4DE')
         frame_menu.pack()
         self.barraMenu.config(text='Menu', compound=LEFT, font='Ivy 23 bold')
@@ -34,7 +34,7 @@ def tela_menu(self):
         botao_Emprestimos.place(x= 8, y= 180)
         linha = Label(frame_menu,bg='#B0C4DE', text='_____________________________________________________________', font='Ivy 8 bold')
         linha.place(x=0,y=220)
-        botao_Livros = Button(frame_menu, bg='#B0C4DE', fg='black',borderwidth=0,font='Arial 18 bold', text='Livros')
+        botao_Livros = Button(frame_menu, bg='#B0C4DE', fg='black',borderwidth=0,font='Arial 18 bold', text='Livros', command=lambda:self.tela_l())
         botao_Livros.place(x= 8, y= 240)
         linha = Label(frame_menu,bg='#B0C4DE', text='_____________________________________________________________', font='Ivy 8 bold')
         linha.place(x=0,y=280)
