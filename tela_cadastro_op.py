@@ -3,6 +3,7 @@ from tela_app import *
 from banco import *
 
 def icon_comeco(self, usu):
+    #Mudanças de campos e elementos, na tela de cadastro, dependendo do tipo de usuário ou serviço
     self.frame.destroy()
     barraAzul = Frame(self.window,borderwidth=0, width=520, height=80, bg='#004aad')
     barraAzul.place(x=0,y=0)
@@ -34,6 +35,7 @@ def icon_comeco(self, usu):
     self.botao_voltar.place(x=10,y=745)
 
 def tela_cadastroCliente(self, usu):
+    #Informações: nome, email e senha.
     icon_comeco(self, usu)
     nome = Label(self.frame, text='Nome: ',bg="#d9d9d9",font=('Ivy 15'))
     nome.place(x=35,y=300)
@@ -52,6 +54,7 @@ def tela_cadastroCliente(self, usu):
     self.btm_cadastrar['command'] = lambda:cadastrar_cliente(entry_nome.get(), entry_email.get(), entry_senha.get())
 
 def tela_cadastroFuncionario(self, usu):
+    #especificações: nome, email, senha e cpf
     icon_comeco(self, usu)
     nome = Label(self.frame, text='Nome: ',bg="#d9d9d9",font=('Ivy 15'))
     nome.place(x=35,y=300)
@@ -75,6 +78,7 @@ def tela_cadastroFuncionario(self, usu):
     
     self.btm_cadastrar['command'] = lambda:cadastrar_funcionario(entry_nome.get(), entry_email.get(), entry_senha.get(), entry_cpf.get())
 def tela_login(self, usu):
+    #Irá pedir o email e senha para verificar no banco --> banco_biblioteca
     icon_comeco(self, usu)
     label_email = Label(self.frame, text='E-mail: ',bg="#a9a9a9",font=('Ivy 15'))
     label_email.place(x=35, y=300)

@@ -3,6 +3,7 @@ from tela_opcaoDeCadastro import *
 from tela_livros import *
 
 def tela_app(self):
+    #tela principal
     self.frame.destroy()
     tela_padrao(self)
     self.frame = Frame(self.window, width='530', height='810', bg='#d9d9d9')

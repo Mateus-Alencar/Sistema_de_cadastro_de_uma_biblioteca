@@ -5,6 +5,7 @@ from tela_app import *
 
 
 def consulta_banco():
+  #Acessar ao banco --> banco_biblioteca
   mydb = None
   try:
     mydb = mysql.connector.connect(host="localhost", user="root", database = "banco_biblioteca")
@@ -70,11 +71,20 @@ def login(self, email, senha):
     info.place(x=160,y=480)
   
 
-def cadastrar_livro():
+def cadastrar_livro(titulo, autor, descricao, imagem):
   db = consulta_banco()
   mycursor = db.cursor()
-  sql = "INSERT INTO livros (nome, email, senha) VALUES ('1','1','1')"
-  mycursor.execute(sql)
+  sql1 = ('''
+    CREATE TABLE IF NOT EXISTS livros(
+    titulo TEXT,
+    autor TEXT,
+    descricao TEXT,
+    imagem TEXT
+  )
+  ''')
+  sql2 = f'INSERT INTO livros (titulo, autor, descricao, imagem) VALUES ("{titulo}","{autor}","{descricao}","{imagem}")'
+  mycursor.execute(sql1)
+  mycursor.execute(sql2)
   mycursor.close()
   db.commit()
   db.close()

@@ -12,6 +12,16 @@ def tela_consultas(self):
     botao_historico = Button(self.frame, text='Histórico', bg='#002dd2', fg='white',width=37, font='Ivy 18')
     botao_historico.place(x=0, y=90)
 
+    self.frame_list_consult = Frame(self.frame)
+    self.frame_list_consult.place(x=0,y=140)
+    
+    def consult_livros():
+        pass
+    def consult_emprestimos():
+        pass
+    def historico():
+        pass
+
     self.frame_list = Frame(self.frame, width='530', height='600',bg='white')
     self.frame_list.place(x=0,y=130)
 

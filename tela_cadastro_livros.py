@@ -20,38 +20,41 @@ def tela_cadastrarLivros(self):
     self.entry_autor = Entry(self.frame, width=25, justify='left',font='Arial 15 bold', relief='solid')
     self.entry_autor.place(x=120,y=150)
 
-    label_descricao = Label(self.frame, text='Descrição: ',bg="#a9a9a9",font=('Ivy 15'))
+    scrollbar = Scrollbar(self.frame) 
+    scrollbar.place(x=140,y=200)
+    label_descricao = Label(self.frame, text='Descrição:',bg="#a9a9a9",font=('Ivy 15'))
     label_descricao.place(x=35, y=200)
-    self.entry_descricao = Entry(self.frame, width=22, justify='left',font='Arial 15 bold', relief='solid')
+    self.entry_descricao = Text(self.frame,yscrollcommand=scrollbar.set, width=22,height=5,font='Arial 15 bold', relief='solid')
     self.entry_descricao.place(x=140,y=200)
+    scrollbar.config(command=self.entry_descricao.yview) 
 
-    label_foto = Label(self.frame, text='Imagem do livro: ',bg="#a9a9a9",font=('Ivy 15'))
-    label_foto.place(x=35, y=250)
-    self.entry_foto = Button(self.frame, width=20, height=2, justify='left', relief='solid', command=lambda:filenames(self))
-    self.entry_foto.place(x=200,y=250)
+    label_foto = Label(self.frame, text='Imagem:',bg="#a9a9a9",font=('Ivy 15'))
+    label_foto.place(x=35, y=350)
+    self.entry_foto = Button(self.frame, width=25,text='selecionar imagem', height=1, justify='left', relief='solid', command=lambda:filenames(self))
+    self.entry_foto.place(x=140,y=353)
 
 
-    botao_salvar = Button(self.frame, text='Salvar', bg='red', fg='white',width=18, font='Ivy 18', command=lambda:salvar())
+    botao_salvar = Button(self.frame, text='Salvar', bg='red', fg='white',width=18, font='Ivy 18', command=lambda:salvar(self))
     botao_salvar.place(x=120, y=500)
     botao_cancelar = Button(self.frame, text='Cancelar', bg='red', fg='white',width=18, font='Ivy 18', command=lambda:cancelar(self))
     botao_cancelar.place(x=120, y=550)
 
     def filenames(self):
-        file = filedialog.askopenfilenames()
-        self.entry_foto.insert(0, file)
-
+        #selecionar o caminho para a imagem
+        file = filedialog.askopenfilenames(initialdir='C:/')
+        self.file = str(file)
+        self.entry_foto['text'] = f'{file}'
 
     def salvar(self):
-        if self.file == '':
-            label = Label(self.frame, text='Inserir caminho da imagem!',bg="#a9a9a9",font=('Ivy 15'))
-            label.place(x=35, y=400)
-        else:
-            cadastrar_livro(self.entry_titulo, self.entry_autor, self.entry_descricao, self.file.get())
+        cadastrar_livro(self.entry_titulo.get(), self.entry_autor.get(), self.entry_descricao.get(), self.file)
 
     def cancelar(self):
+        #Limpa os campos prenchidos
         self.entry_titulo.delete(0, END)
         self.entry_autor.delete(0, END)
         self.entry_descricao.delete(0, END)
+        self.file = ''
+        self.entry_foto['text'] = 'selecionar imagem'
         
 
     self.img_voltar = PhotoImage(file='voltar.png')

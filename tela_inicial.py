@@ -28,7 +28,7 @@ class app:
             self.barraMenu.destroy()
             self.tela_deFundo.destroy()
 
-
+    #Navegação entre telas.
     def voltar_tela_cadastros(self):
         self.ex()
         tela_Op_cadastros(self)
