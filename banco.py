@@ -3,7 +3,6 @@ from mysql.connector import Error
 from f_tela_base import *
 from tela_app import *
 
-
 def consulta_banco():
   #Acessar ao banco --> banco_biblioteca
   mydb = None
@@ -85,6 +84,19 @@ def cadastrar_livro(titulo, autor, descricao, imagem):
   sql2 = f'INSERT INTO livros (titulo, autor, descricao, imagem) VALUES ("{titulo}","{autor}","{descricao}","{imagem}")'
   mycursor.execute(sql1)
   mycursor.execute(sql2)
+  mycursor.close()
+  db.commit()
+  db.close()
+
+def pesquisar_livros(self):
+  db = consulta_banco()
+  mycursor = db.cursor()
+  sql = ('''
+    SELECT * FROM `livros`
+  ''')
+  mycursor.execute(sql)
+  self.linhas = mycursor.fetchall()
+
   mycursor.close()
   db.commit()
   db.close()

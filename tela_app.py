@@ -1,6 +1,7 @@
 from f_tela_base import *
-from tela_opcaoDeCadastro import *
 from tela_livros import *
+from tela_opcaoDeCadastro import *
+
 
 def tela_app(self):
     #tela principal

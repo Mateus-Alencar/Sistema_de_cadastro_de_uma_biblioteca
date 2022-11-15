@@ -4,6 +4,7 @@ from tela_config import *
 from tela_livros import *
 from tela_consultas import *
 
+
 class app:
     def __init__(self):
         self.window = Tk()

@@ -17,16 +17,19 @@ def icon_comeco(self, usu):
     self.btm_cadastrar = Button(self.frame, bg='black',borderwidth=4, fg='white',width=15, font='Ivy 16', command=None)
     self.btm_cadastrar.place(x=170, y=510)
     label = Label(self.frame, font='Arial 20 bold', bg='#d9d9d9', fg='black')
-    label.place(x=190, y= 190)
+    
     
     if usu == self.funcionario:
         label['text'] = 'Funcionário'
+        label.place(x=180, y= 190)
         self.btm_cadastrar['text'] = 'Cadastrar'
     elif usu == self.cliente:
         label['text'] = 'Cliente'
+        label.place(x=190, y= 200)
         self.btm_cadastrar['text'] = 'Cadastrar'
     elif usu == self.login:
         label['text'] = 'Login'
+        label.place(x=210, y= 190)
         self.btm_cadastrar['text'] = 'Login'
         
 

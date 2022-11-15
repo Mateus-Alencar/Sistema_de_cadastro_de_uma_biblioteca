@@ -8,7 +8,6 @@ def tela_cadastrarLivros(self):
     self.frame.destroy()
     self.frame = Frame(self.window, width='550', height='850',bg='#d9d9d9')
     self.frame.place(x='2', y='90')
-    id_livro = Label(self.frame, text='Id_livro: ',bg="#a9a9a9",font=('Ivy 15'))
 
     label_titulo = Label(self.frame, text='Titulo: ',bg="#a9a9a9",font=('Ivy 15'))
     label_titulo.place(x=35, y=100)
@@ -20,18 +19,15 @@ def tela_cadastrarLivros(self):
     self.entry_autor = Entry(self.frame, width=25, justify='left',font='Arial 15 bold', relief='solid')
     self.entry_autor.place(x=120,y=150)
 
-    scrollbar = Scrollbar(self.frame) 
-    scrollbar.place(x=140,y=200)
     label_descricao = Label(self.frame, text='Descrição:',bg="#a9a9a9",font=('Ivy 15'))
     label_descricao.place(x=35, y=200)
-    self.entry_descricao = Text(self.frame,yscrollcommand=scrollbar.set, width=22,height=5,font='Arial 15 bold', relief='solid')
+    self.entry_descricao = Entry(self.frame, width=25,font='Arial 15 bold', relief='solid')
     self.entry_descricao.place(x=140,y=200)
-    scrollbar.config(command=self.entry_descricao.yview) 
 
     label_foto = Label(self.frame, text='Imagem:',bg="#a9a9a9",font=('Ivy 15'))
-    label_foto.place(x=35, y=350)
-    self.entry_foto = Button(self.frame, width=25,text='selecionar imagem', height=1, justify='left', relief='solid', command=lambda:filenames(self))
-    self.entry_foto.place(x=140,y=353)
+    label_foto.place(x=35, y=250)
+    self.entry_foto = Button(self.frame, width=25,text='selecionar imagem', height=2, justify='left', relief='solid', command=lambda:filenames(self))
+    self.entry_foto.place(x=140,y=250)
 
 
     botao_salvar = Button(self.frame, text='Salvar', bg='red', fg='white',width=18, font='Ivy 18', command=lambda:salvar(self))
