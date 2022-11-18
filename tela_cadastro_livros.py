@@ -1,7 +1,10 @@
+import os
 from tkinter import filedialog
 from turtle import width
 from f_tela_base import *
 from banco import cadastrar_livro
+from pathlib import Path
+import shutil
 
 #Referente a tela de consulta
 def tela_cadastrarLivros(self):
@@ -37,8 +40,9 @@ def tela_cadastrarLivros(self):
 
     def filenames(self):
         #selecionar o caminho para a imagem
-        file = filedialog.askopenfilenames(initialdir='C:/')
+        file = filedialog.askopenfilenames(initialdir='capa_livros')
         self.file = str(file)
+        print(self.file)
         self.entry_foto['text'] = f'{file}'
 
     def salvar(self):

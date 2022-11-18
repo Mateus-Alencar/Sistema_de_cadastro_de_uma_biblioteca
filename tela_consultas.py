@@ -34,9 +34,9 @@ def consulta_livros(self):
     treev.configure(xscrollcommand = verscrlbar.set) 
     treev["columns"] = ("1", "2", "3") 
     treev['show'] = 'headings'
-    treev.column("1", width = 130, anchor ='c') 
-    treev.column("2", width = 130, anchor ='se') 
-    treev.column("3", width = 210, anchor ='se') 
+    treev.column("1", width = 140, anchor ='c') 
+    treev.column("2", width = 120, anchor ='se') 
+    treev.column("3", width = 220, anchor ='se') 
     treev.heading("1", text ="titulo") 
     treev.heading("2", text ="autor") 
     treev.heading("3", text ="descrição")
