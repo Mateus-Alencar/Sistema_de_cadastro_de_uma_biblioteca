@@ -1,5 +1,5 @@
 from tkinter import ttk
-from banco import pesquisar_livros
+from banco import pesquisar_livros, status_livro
 from f_tela_base import *
 
 
@@ -10,7 +10,7 @@ def tela_consultas(self):
 
     botao_livros = Button(self.frame, text='Livros', bg='#002dd2', fg='white',width=37, font='Ivy 18', command=lambda:consulta_livros(self))
     botao_livros.place(x=0, y=5)
-    botao_emprestimos = Button(self.frame, text='Empréstimos', bg='#002dd2', fg='white',width=37, font='Ivy 18')
+    botao_emprestimos = Button(self.frame, text='Empréstimos', bg='#002dd2', fg='white',width=37, font='Ivy 18', command=lambda:consulta_emprestimos(self))
     botao_emprestimos.place(x=0, y=50)
     botao_historico = Button(self.frame, text='Histórico', bg='#002dd2', fg='white',width=37, font='Ivy 18')
     botao_historico.place(x=0, y=90)
@@ -47,7 +47,31 @@ def consulta_livros(self):
     for linha in linhas:
         treev.insert('', END, values=linha)
 
-def consult_emprestimos():
-    pass
+def consulta_emprestimos(self):
+    frame = Frame(self.frame_list, width=530, height=600, bg='white')
+    frame.pack()
+
+    treev = ttk.Treeview(frame, selectmode ='browse', height=25) 
+    treev.pack(side ='right') 
+    verscrlbar = ttk.Scrollbar(frame,  
+                            orient ="vertical",  
+                            command = treev.yview) 
+    verscrlbar.pack(side ='right', fill ='x') 
+    treev.configure(xscrollcommand = verscrlbar.set) 
+    treev["columns"] = ("1", "2", "3") 
+    treev['show'] = 'headings'
+    treev.column("1", width = 140, anchor ='c') 
+    treev.column("2", width = 120, anchor ='se') 
+    treev.column("3", width = 220, anchor ='se') 
+    treev.heading("1", text ="titulo") 
+    treev.heading("2", text ="autor") 
+    treev.heading("3", text ="Data empréstimo")
+
+    status_livro(self)
+    linhas = self.emprestimos_banco
+    print(linhas)
+    for linha in linhas:
+        treev.insert('', END, values=linha)
+
 def historico():
     pass

@@ -1,7 +1,8 @@
-from banco import pesquisar_livros
+from banco import pesquisar_livros, status_livro, add_emprestimo, excluir_livro
 from f_tela_base import *
 from tela_cadastro_livros import *
 from tkinter import ttk
+from PIL import ImageTk, Image
 
 def tela_livros(self):
     self.frame.destroy()
@@ -19,15 +20,22 @@ def tela_livros(self):
     self.botao_voltar.place(x=10,y=745)
 
 def selecao_livros(self):
+    barra_pesquisa = Entry(self.frame,width=25, justify='left',font='Arial 16 bold', relief='solid')
+    barra_pesquisa.place(x=80,y=10)
+    label = Label(self.frame, text='Livro: ',bg='#d9d9d9', font='Arial 15 bold')
+    label.place(x=10,y=10)
+    label = Button(self.frame, text='Pesquisar',bd=5,relief='solid', font='Arial 15 bold', command=lambda:frame_livro(self, barra_pesquisa.get()))
+    label.place(x=385,y=4)
+
     self.frame_l = Frame(self.frame, width=530,height=600, bg='white')
-    self.frame_l.place(x=0,y=0)
+    self.frame_l.place(x=0,y=70)
 
 
     #Create a Main Frame
     main_frame = Frame(self.frame_l)
     main_frame.pack(fill=BOTH, expand=1)
     #reate a Canvas
-    my_canvas = Canvas(main_frame, height=700, width=500)
+    my_canvas = Canvas(main_frame, height=620, width=500)
     my_canvas.pack(side=LEFT,fill=BOTH, expand=1)
     # Add a scrollbar to the canvas
     my_scrollbar = ttk.Scrollbar(main_frame, orient=VERTICAL, command=my_canvas.yview)
@@ -42,25 +50,110 @@ def selecao_livros(self):
     pesquisar_livros(self)
     linhas = self.linhas
     print(linhas)
-    c=0
+
+    #for linha in linhas:
+    ##    self.imagens = PhotoImage(file=f'capa_livros/{linha[0]}.png')
+    #cont = 0
     for linha in linhas:
         frame = Frame(second_frame,width=530, height=190, bg='#696969')
         frame.pack()
-        #self.path = linha[3]
-        #self.img = ImageTk.PhotoImage(Image.open(self.path))
-        self.label = Label(frame,text='im',bg="#d9d9d9",font=('Ivy 25'))
-        self.label.place(x=10,y=20)
-        label = Label(frame, text=str(linha[0]),bg="#d9d9d9",font=('Ivy 15'))
-        label.place(x=200,y=10)
-        label = Label(frame, text=str(linha[1]),bg="#d9d9d9",font=('Ivy 15'))
-        label.place(x=200,y=50)
-        emprestimo = Button(frame, text='status',font='Ivy 15', bg='#d9d9d9')
-        emprestimo.place(x=430,y=140)
-        c = c + 200
+
+        imagem = Image.open(f'capa_livros/{linha[0]}.png')
+        self.imagemL = ImageTk.PhotoImage(imagem)
+        label = Button(frame,bg='black',image=self.imagemL, height=150, width=120)
+        label.image = self.imagemL
+        label.place(x=10,y=20)
+
+        label_titulo = Label(frame, text=str(linha[0]),bg="#d9d9d9",font=('Ivy 15'))
+        label_titulo.place(x=180,y=20)
+        label_autor = Label(frame, text=str(linha[1]),bg="#d9d9d9",font=('Ivy 15'))
+        label_autor.place(x=180,y=60)
+        status_livro(self)
+        status = 'Disponível'
+        for livro in self.emprestimos_banco:
+            if linha[0] == livro[0]:
+                status = 'Emprestado'
+        emprestimo = emprestimo = Label(frame, text=status,font='Ivy 15', bg='#d9d9d9')
+        emprestimo.place(x=390,y=130)
 
 
-        #label = Label(f, text=str(linha[3]),bg="#d9d9d9",font=('Ivy 15'))
-        #label.grid(column=4, row=1)
+def frame_livro(self, titulo):
+    #Cria um frame em cima do Self.frame para mostrar os dados do livro
+    print(titulo)
+    for l in self.linhas:
+        if l[0] == titulo:
+            linha = l
+    print(linha)
+    frame_esp = Frame(self.frame, width=450,height=550,bd=3,relief='groove', bg='white')
+    frame_esp.place(x=20, y= 100)
+
+    label = Label(frame_esp,text=str(linha[3]),bg="#d9d9d9")
+    label.place(x=10,y=20)
+
+    label = Label(frame_esp, text='Título:',bg="white",font=('Ivy 15'))
+    label.place(x=20,y=160)
+    label = Label(frame_esp, text=str(linha[0]),bg="white",font=('Ivy 15'))
+    label.place(x=100,y=160)
+    label = Label(frame_esp, text='Autor:',bg="white",font=('Ivy 15'))
+    label.place(x=20,y=200)
+    label = Label(frame_esp, text=str(linha[1]),bg="white",font=('Ivy 15'))
+    label.place(x=100,y=200)
+
+    label_text = Label(frame_esp,bg="#d9d9d9",wraplength=180,text=linha[2],font=('Ivy 12'), width=45, height=13)
+    label_text.place(x=10,y=250)
+
+    self.emprestimo = Button(frame_esp, text='Disponível',font='Ivy 15', bg='#d9d9d9', command=lambda:trocar_status(self, linha))
+    self.emprestimo.place(x=180,y=500)
+
+    botao_excluir_livro = Button(frame_esp, text='Excluir', font='Ivy 14', relief='solid', bg='red', fg='black', command=lambda:excluir_livro(linha[0]))
+    botao_excluir_livro.place(x=20, y=500)
+
+    sair = Button(frame_esp, text='SAIR',font='Ivy 8', bg='#d9d9d9', command=lambda:sair(frame_esp))
+    sair.place(x=400,y=520)
+
+    def sair(frame):
+        frame.destroy()
+
+    def trocar_status(self, linha):
+        frame_status = Frame(self.frame, width=450,height=550,bd=3,relief='groove', bg='white')
+        frame_status.place(x=20, y=100)
+
+        self.label_n_l = Label(frame_status, font='Ivy 18',bg='white', text=linha[0])
+        self.label_n_l.place(x=40,y=30 )
+        linha = Label(frame_status,bg='white', text='______________________________________________________________________________________', font='Ivy 8 bold')
+        linha.place(x=0,y=60)
+
+        label = Label(frame_status,bg='white', font='Arial 15', text='Nome cliente:')
+        label.place(x=20,y=120)
+        self.entry_cliente = Entry(frame_status,bd=3,relief='solid', font='Arial 13')
+        self.entry_cliente.place(x=160,y=120)
+
+        label = Label(frame_status,bg='white', font='Arial 15', text='Data emprestimo:')
+        label.place(x=20 ,y= 160)
+        self.entry_data_emprestimo = Entry(frame_status,bd=3,relief='solid', font='Arial 13')
+        self.entry_data_emprestimo.place(x=180 ,y=160 )
+
+        label = Label(frame_status,bg='white', font='Arial 15', text='Data devolução:')
+        label.place(x=20 ,y=200)
+        self.entry_data_devolucao = Entry(frame_status,bd=3,relief='solid', font='Arial 13')
+        self.entry_data_devolucao.place(x=180 ,y=200 )
+
+        label = Label(frame_status,bg='white', font='Ivy 12', text='Data --> "aaaa-mm-dd"')
+        label.place(x=20 ,y=230)
+
+        botao = Button(frame_status, text='OK', font='Arial 15', bd=5,relief='groove', command=lambda:adicionar_emprestimo(self))
+        botao.place(x=190,y=250)
+
+        sair2 = Button(frame_status, text='SAIR',font='Ivy 8', bg='#d9d9d9', command=lambda:sair(frame_status))
+        sair2.place(x=400,y=520)
+        
+        def adicionar_emprestimo(self):
+            add_emprestimo(self)
+            if self.emprestimo['text'] == 'Disponível':
+                self.emprestimo['text'] = 'Emprestado'
+            else:
+                self.emprestimo['text'] = 'Disponível'
+
 
 
 '''

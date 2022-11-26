@@ -43,7 +43,7 @@ def tela_menu(self):
         linha = Label(frame_menu,bg='#B0C4DE', text='_____________________________________________________________', font='Ivy 8 bold')
         linha.place(x=0,y=340)
 
-        self.botao_sair = Button(frame_menu, text='SAIR',borderwidth=0,bg='#d9d9d9',font='Arial 10 bold', command=lambda:voltar(self))
+        self.botao_sair = Button(frame_menu, text='SAIR',borderwidth=0,bg='#a9a9a9',font='Arial 10 bold', command=lambda:voltar(self))
         self.botao_sair.place(x=300,y=520)
 
         self.img_voltar_c = PhotoImage(file='voltar.png')

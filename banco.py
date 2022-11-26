@@ -7,7 +7,7 @@ def consulta_banco():
   #Acessar ao banco --> banco_biblioteca
   mydb = None
   try:
-    mydb = mysql.connector.connect(host="localhost", user="root", database = "banco_biblioteca")
+    mydb = mysql.connector.connect(host="localhost", user="root", database = "banco_biblioteca3")
     print('conexão realizada com sucesso!!!')
   except Error as err:
     print(f"Error: {err}")
@@ -94,6 +94,15 @@ def pesquisar_livros(self):
   sql = ('''
     SELECT * FROM `livros`
   ''')
+  sql1 = ('''
+    CREATE TABLE IF NOT EXISTS livros(
+    titulo TEXT,
+    autor TEXT,
+    descricao TEXT,
+    imagem TEXT
+  )
+  ''')
+  mycursor.execute(sql1)
   mycursor.execute(sql)
   self.linhas = mycursor.fetchall()
 
@@ -101,3 +110,49 @@ def pesquisar_livros(self):
   db.commit()
   db.close()
 
+def status_livro(self):
+  db = consulta_banco()
+  mycursor = db.cursor()
+  sql1 = ('''
+    CREATE TABLE IF NOT EXISTS emprestimos(
+    nome_livro TEXT,
+    nome_cliente TEXT,
+    date_emprestimo date,
+    data_devolucao date
+  )
+  ''')
+  sql = ('''
+    SELECT * FROM `emprestimos`
+  ''')
+  mycursor.execute(sql1)
+  mycursor.execute(sql)
+  self.emprestimos_banco = mycursor.fetchall()
+
+  mycursor.close()
+  db.commit()
+  db.close()
+
+def add_emprestimo(self):
+  db = consulta_banco()
+  mycursor = db.cursor()
+  sql = (f'''
+    INSERT INTO `emprestimos`(`nome_livro`, `nome_cliente`, `date_emprestimo`, `data_devolucao`) 
+    VALUES ('{self.label_n_l['text']}','{self.entry_cliente.get()}','{self.entry_data_emprestimo.get()}','{self.entry_data_devolucao.get()}');
+  ''')
+  mycursor.execute(sql)
+  self.emprestimos_banco = mycursor.fetchall()
+
+  mycursor.close()
+  db.commit()
+  db.close()
+
+def excluir_livro(livro):
+  db = consulta_banco()
+  mycursor = db.cursor()
+  sql = (f'''
+      DELETE from livros WHERE titulo = "{livro}" 
+  ''')
+  mycursor.execute(sql)
+  mycursor.close()
+  db.commit()
+  db.close()
