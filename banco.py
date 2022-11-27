@@ -57,7 +57,6 @@ def login(self, email, senha):
   '''
   mycursor.execute(sql)
   myresult = mycursor.fetchall()
-  print(myresult)
   tempo(self)
   if senha and email in myresult[0]:
     mycursor.close()

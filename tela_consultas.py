@@ -71,7 +71,6 @@ def consulta_emprestimos(self):
 
     status_livro(self)
     linhas = self.emprestimos_banco
-    print(linhas)
     for linha in linhas:
         treev.insert('', END, values=linha)
 

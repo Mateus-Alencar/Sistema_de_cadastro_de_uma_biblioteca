@@ -70,7 +70,6 @@ def selecao_livros(self):
         status_livro(self)
         self.status = 'Disponível'
         for livro in self.emprestimos_banco:
-            print(livro)
             if linha[0] == livro[0]:
                 if livro[3] == None:
                     self.status = 'Emprestado'
@@ -101,9 +100,15 @@ def frame_livro(self, titulo):
 
     label_text = Label(frame_esp,bg="#d9d9d9",wraplength=180,text=linha[2],font=('Ivy 12'), width=45, height=13)
     label_text.place(x=10,y=250)
+    
+    self.status2 = 'Disponível'
+    for livro in self.emprestimos_banco:
+        if linha[0] == livro[0]:
+            if livro[3] == None:
+                self.status2 = 'Emprestado'
 
-    self.emprestimo = Button(frame_esp, text=self.status,font='Ivy 15', bg='#d9d9d9', command=lambda:trocar_status(self, linha))
-    self.emprestimo.place(x=180,y=500)
+    emprestimo = Button(frame_esp, text=self.status2,font='Ivy 15', bg='#d9d9d9', command=lambda:trocar_status(self, linha))
+    emprestimo.place(x=180,y=500)
 
     botao_excluir_livro = Button(frame_esp, text='Excluir', font='Ivy 14', relief='solid', bg='red', fg='black', command=lambda:excluir_livro(linha[0]))
     botao_excluir_livro.place(x=20, y=500)
@@ -143,6 +148,9 @@ def frame_livro(self, titulo):
 
         botao = Button(frame_status, text='OK', font='Arial 15', bd=5,relief='groove', command=lambda:adicionar_emprestimo(self, linha[0]))
         botao.place(x=190,y=250)
+
+        label = Label(frame_status,text='Av. Alonso Y Alonso, 246 - Centro', fg='black',bg='White', font='Arial 12')
+        label.place(x=90,y=490)
 
         sair2 = Button(frame_status, text='SAIR',font='Ivy 8', bg='#d9d9d9', command=lambda:sair(frame_status))
         sair2.place(x=400,y=520)
