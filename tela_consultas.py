@@ -12,7 +12,7 @@ def tela_consultas(self):
     botao_livros.place(x=0, y=5)
     botao_emprestimos = Button(self.frame, text='Empréstimos', bg='#002dd2', fg='white',width=37, font='Ivy 18', command=lambda:consulta_emprestimos(self))
     botao_emprestimos.place(x=0, y=50)
-    botao_historico = Button(self.frame, text='Histórico', bg='#002dd2', fg='white',width=37, font='Ivy 18')
+    botao_historico = Button(self.frame, text='Histórico', bg='#002dd2', fg='white',width=37, font='Ivy 18', command=lambda:historico(self))
     botao_historico.place(x=0, y=90)
 
     self.frame_list = Frame(self.frame, width=530, height=600, bg='white')
@@ -21,9 +21,11 @@ def tela_consultas(self):
     self.img_voltar = PhotoImage(file='voltar.png')
     self.botao_voltar = Button(self.frame, image=self.img_voltar,borderwidth=0,bg='#d9d9d9', width=48,height=48, command=lambda:self.voltar_app())
     self.botao_voltar.place(x=10,y=745)
+    consulta_emprestimos(self)
+
 def consulta_livros(self):
     frame = Frame(self.frame_list, width=530, height=600, bg='white')
-    frame.pack()
+    frame.place(x=0,y=0)
 
     treev = ttk.Treeview(frame, selectmode ='browse', height=25) 
     treev.pack(side ='right') 
@@ -49,7 +51,7 @@ def consulta_livros(self):
 
 def consulta_emprestimos(self):
     frame = Frame(self.frame_list, width=530, height=600, bg='white')
-    frame.pack()
+    frame.place(x=0,y=0)
 
     treev = ttk.Treeview(frame, selectmode ='browse', height=25) 
     treev.pack(side ='right') 
@@ -73,5 +75,34 @@ def consulta_emprestimos(self):
     for linha in linhas:
         treev.insert('', END, values=linha)
 
-def historico():
-    pass
+def historico(self):
+    frame = Frame(self.frame_list, width=530, height=600, bg='white')
+    frame.place(x=0,y=0)
+
+    treev = ttk.Treeview(frame, selectmode ='browse', height=25) 
+    treev.pack(side ='right') 
+    verscrlbar = ttk.Scrollbar(frame,  
+                            orient ="vertical",  
+                            command = treev.yview) 
+    verscrlbar.pack(side ='right', fill ='x') 
+    treev.configure(xscrollcommand = verscrlbar.set) 
+    treev["columns"] = ("1", "2", "3", "4") 
+    treev['show'] = 'headings'
+    treev.column("1", width = 140, anchor ='c') 
+    treev.column("2", width = 120, anchor ='se') 
+    treev.column("3", width = 220, anchor ='se') 
+    treev.column("4", width = 220, anchor ='se') 
+    treev.heading("1", text ="titulo") 
+    treev.heading("2", text ="autor") 
+    treev.heading("3", text ="Data empréstimo")
+    treev.heading("4", text ="Data devolução")
+
+    status_livro(self)
+    linhas = []
+    for livro in self.emprestimos_banco:
+        if livro[3] != None:
+            linhas.append(livro)
+
+        
+    for livro_linha in linhas:
+        treev.insert('', END, values=livro_linha)

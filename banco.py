@@ -8,7 +8,6 @@ def consulta_banco():
   mydb = None
   try:
     mydb = mysql.connector.connect(host="localhost", user="root", database = "banco_biblioteca3")
-    print('conexão realizada com sucesso!!!')
   except Error as err:
     print(f"Error: {err}")
   return mydb
@@ -151,6 +150,17 @@ def excluir_livro(livro):
   mycursor = db.cursor()
   sql = (f'''
       DELETE from livros WHERE titulo = "{livro}" 
+  ''')
+  mycursor.execute(sql)
+  mycursor.close()
+  db.commit()
+  db.close()
+
+def excluir_emprestimo(livro):
+  db = consulta_banco()
+  mycursor = db.cursor()
+  sql = (f'''
+      DELETE from emprestimos WHERE nome_livro = "{livro}" 
   ''')
   mycursor.execute(sql)
   mycursor.close()

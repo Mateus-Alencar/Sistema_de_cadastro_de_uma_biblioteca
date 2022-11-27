@@ -3,6 +3,7 @@ from tkinter import *
 from tkinter.ttk import Progressbar
 from tela_config import *
 
+
 def tela_padrao(self):
         barraAzul = Frame(self.window,borderwidth=0, width=520, height=80, bg='#004aad')
         barraAzul.pack()
@@ -30,7 +31,7 @@ def tela_menu(self):
         botao_Consultar.place(x= 8, y= 120)
         linha = Label(frame_menu,bg='#B0C4DE', text='_____________________________________________________________', font='Ivy 8 bold')
         linha.place(x=0,y=160)
-        botao_Emprestimos = Button(frame_menu, bg='#B0C4DE', fg='black',borderwidth=0,font='Arial 18 bold', text='Empréstimos')
+        botao_Emprestimos = Button(frame_menu, bg='#B0C4DE', fg='black',borderwidth=0,font='Arial 18 bold', text='Empréstimos', command=lambda:self.emprestimos_consult())
         botao_Emprestimos.place(x= 8, y= 180)
         linha = Label(frame_menu,bg='#B0C4DE', text='_____________________________________________________________', font='Ivy 8 bold')
         linha.place(x=0,y=220)
@@ -38,10 +39,7 @@ def tela_menu(self):
         botao_Livros.place(x= 8, y= 240)
         linha = Label(frame_menu,bg='#B0C4DE', text='_____________________________________________________________', font='Ivy 8 bold')
         linha.place(x=0,y=280)
-        botao_config = Button(frame_menu, bg='#B0C4DE', fg='black',borderwidth=0,font='Arial 18 bold', text='Configurações', command=lambda:self.config())
-        botao_config.place(x= 8, y= 300)
-        linha = Label(frame_menu,bg='#B0C4DE', text='_____________________________________________________________', font='Ivy 8 bold')
-        linha.place(x=0,y=340)
+
 
         self.botao_sair = Button(frame_menu, text='SAIR',borderwidth=0,bg='#a9a9a9',font='Arial 10 bold', command=lambda:voltar(self))
         self.botao_sair.place(x=300,y=520)

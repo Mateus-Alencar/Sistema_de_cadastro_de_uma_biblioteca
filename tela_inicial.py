@@ -50,5 +50,8 @@ class app:
     def tela_l(self):
         tela_livros(self)
 
+    def emprestimos_consult(self):
+        tela_consultas(self)
+
 
 app()

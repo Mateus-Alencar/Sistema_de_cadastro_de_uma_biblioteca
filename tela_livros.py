@@ -1,4 +1,4 @@
-from banco import pesquisar_livros, status_livro, add_emprestimo, excluir_livro
+from banco import pesquisar_livros, status_livro, add_emprestimo, excluir_livro, excluir_emprestimo
 from f_tela_base import *
 from tela_cadastro_livros import *
 from tkinter import ttk
@@ -49,7 +49,6 @@ def selecao_livros(self):
     my_canvas.create_window((0,0), window=second_frame, anchor='nw')
     pesquisar_livros(self)
     linhas = self.linhas
-    print(linhas)
 
     #for linha in linhas:
     ##    self.imagens = PhotoImage(file=f'capa_livros/{linha[0]}.png')
@@ -69,26 +68,27 @@ def selecao_livros(self):
         label_autor = Label(frame, text=str(linha[1]),bg="#d9d9d9",font=('Ivy 15'))
         label_autor.place(x=180,y=60)
         status_livro(self)
-        status = 'Disponível'
+        self.status = 'Disponível'
         for livro in self.emprestimos_banco:
+            print(livro)
             if linha[0] == livro[0]:
-                status = 'Emprestado'
-        emprestimo = emprestimo = Label(frame, text=status,font='Ivy 15', bg='#d9d9d9')
-        emprestimo.place(x=390,y=130)
+                if livro[3] == None:
+                    self.status = 'Emprestado'
+        self.emprestimo_status = Label(frame, text=self.status,font='Ivy 15', bg='#d9d9d9')
+        self.emprestimo_status.place(x=390,y=130)
 
 
 def frame_livro(self, titulo):
     #Cria um frame em cima do Self.frame para mostrar os dados do livro
-    print(titulo)
     for l in self.linhas:
         if l[0] == titulo:
             linha = l
-    print(linha)
     frame_esp = Frame(self.frame, width=450,height=550,bd=3,relief='groove', bg='white')
     frame_esp.place(x=20, y= 100)
 
-    label = Label(frame_esp,text=str(linha[3]),bg="#d9d9d9")
-    label.place(x=10,y=20)
+    self.imagem_qrcode = PhotoImage(file='qrcode.png')
+    label = Label(frame_esp,bg="#d9d9d9", image=self.imagem_qrcode, width=150, height=150)
+    label.place(x=160,y=10)
 
     label = Label(frame_esp, text='Título:',bg="white",font=('Ivy 15'))
     label.place(x=20,y=160)
@@ -102,7 +102,7 @@ def frame_livro(self, titulo):
     label_text = Label(frame_esp,bg="#d9d9d9",wraplength=180,text=linha[2],font=('Ivy 12'), width=45, height=13)
     label_text.place(x=10,y=250)
 
-    self.emprestimo = Button(frame_esp, text='Disponível',font='Ivy 15', bg='#d9d9d9', command=lambda:trocar_status(self, linha))
+    self.emprestimo = Button(frame_esp, text=self.status,font='Ivy 15', bg='#d9d9d9', command=lambda:trocar_status(self, linha))
     self.emprestimo.place(x=180,y=500)
 
     botao_excluir_livro = Button(frame_esp, text='Excluir', font='Ivy 14', relief='solid', bg='red', fg='black', command=lambda:excluir_livro(linha[0]))
@@ -120,8 +120,8 @@ def frame_livro(self, titulo):
 
         self.label_n_l = Label(frame_status, font='Ivy 18',bg='white', text=linha[0])
         self.label_n_l.place(x=40,y=30 )
-        linha = Label(frame_status,bg='white', text='______________________________________________________________________________________', font='Ivy 8 bold')
-        linha.place(x=0,y=60)
+        linha_ = Label(frame_status,bg='white', text='______________________________________________________________________________________', font='Ivy 8 bold')
+        linha_.place(x=0,y=60)
 
         label = Label(frame_status,bg='white', font='Arial 15', text='Nome cliente:')
         label.place(x=20,y=120)
@@ -141,18 +141,21 @@ def frame_livro(self, titulo):
         label = Label(frame_status,bg='white', font='Ivy 12', text='Data --> "aaaa-mm-dd"')
         label.place(x=20 ,y=230)
 
-        botao = Button(frame_status, text='OK', font='Arial 15', bd=5,relief='groove', command=lambda:adicionar_emprestimo(self))
+        botao = Button(frame_status, text='OK', font='Arial 15', bd=5,relief='groove', command=lambda:adicionar_emprestimo(self, linha[0]))
         botao.place(x=190,y=250)
 
         sair2 = Button(frame_status, text='SAIR',font='Ivy 8', bg='#d9d9d9', command=lambda:sair(frame_status))
         sair2.place(x=400,y=520)
         
-        def adicionar_emprestimo(self):
-            add_emprestimo(self)
-            if self.emprestimo['text'] == 'Disponível':
-                self.emprestimo['text'] = 'Emprestado'
-            else:
-                self.emprestimo['text'] = 'Disponível'
+        def adicionar_emprestimo(self, titulo):
+            if self.status == 'Disponível':
+                excluir_emprestimo(titulo)
+                add_emprestimo(self)
+                self.status = 'Emprestado'
+            if self.status == 'Emprestado':
+                excluir_emprestimo(titulo)
+                add_emprestimo(self)
+                self.status = 'Disponível'
 
 
 

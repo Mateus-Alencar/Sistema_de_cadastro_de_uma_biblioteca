@@ -32,6 +32,12 @@ def tela_cadastrarLivros(self):
     self.entry_foto = Button(self.frame, width=25,text='selecionar imagem', height=2, justify='left', relief='solid', command=lambda:filenames(self))
     self.entry_foto.place(x=140,y=250)
 
+    label = Label(self.frame, text='PNG',bg="#d9d9d9",font=('Ivy 8'))
+    label.place(x=330, y=250)
+    label = Label(self.frame, text='120X150',bg="#d9d9d9",font=('Ivy 8'))
+    label.place(x=330, y=270)
+
+
 
     botao_salvar = Button(self.frame, text='Salvar', bg='red', fg='white',width=18, font='Ivy 18', command=lambda:salvar(self))
     botao_salvar.place(x=120, y=500)
